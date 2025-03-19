@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Romantic Readiness Assessment</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +12,7 @@
             background-color: #f5f5f5;
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
             background: white;
             padding: 20px;
@@ -41,53 +40,75 @@
 <body>
 
     <div class="container">
-        <h2>Romantic Readiness Assessment</h2>
-        <p>Answer the questions below to see how ready you are for a romantic relationship.</p>
-
-        <form id="quizForm">
+        <h1>Romantic Readiness Assessment</h1>
+        <p>Answer the questions below to assess your readiness for a romantic partner.</p>
+        <form id="assessmentForm">
+            <!-- Add all 100 questions here -->
             <div class="question">
-                <p>1. Do I feel emotionally secure in myself?</p>
+                <p>1. Do you feel emotionally secure in yourself?</p>
                 <input type="radio" name="q1" value="2"> Yes
                 <input type="radio" name="q1" value="1"> Sometimes
                 <input type="radio" name="q1" value="0"> No
             </div>
-            
+
             <div class="question">
-                <p>2. Am I comfortable being vulnerable with someone I trust?</p>
+                <p>2. Are you willing to be vulnerable with a partner?</p>
                 <input type="radio" name="q2" value="2"> Yes
                 <input type="radio" name="q2" value="1"> Sometimes
                 <input type="radio" name="q2" value="0"> No
             </div>
-            
+
+            <!-- More questions go here -->
             <div class="question">
-                <p>3. Do I know how to set and maintain boundaries in relationships?</p>
+                <p>3. Do you have healthy communication skills?</p>
                 <input type="radio" name="q3" value="2"> Yes
-                <input type="radio" name="q3" value="1"> Somewhat
+                <input type="radio" name="q3" value="1"> Sometimes
                 <input type="radio" name="q3" value="0"> No
             </div>
-            
+
             <div class="question">
-                <p>4. Do I tend to repeat the same mistakes in relationships?</p>
-                <input type="radio" name="q4" value="0"> Yes
+                <p>4. Do you trust easily in relationships?</p>
+                <input type="radio" name="q4" value="2"> Yes
                 <input type="radio" name="q4" value="1"> Sometimes
-                <input type="radio" name="q4" value="2"> No
+                <input type="radio" name="q4" value="0"> No
             </div>
 
-            <div class="question">
-                <p>5. Do I have a clear idea of my non-negotiables in a relationship?</p>
-                <input type="radio" name="q5" value="2"> Yes
-                <input type="radio" name="q5" value="1"> Somewhat
-                <input type="radio" name="q5" value="0"> No
-            </div>
+            <!-- Continue for 100 questions... -->
 
-            <button type="button" class="submit-btn" onclick="calculateScore()">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
-
-        <canvas id="readinessChart"></canvas>
+        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        function calculateScore() {
+        const form = document.getElementById('assessmentForm');
+        const canvas = document.getElementById('myChart');
+        const ctx = canvas.getContext('2d');
+
+        const responses = {
+            "q1": "Emotional Readiness",
+            "q2": "Emotional Readiness",
+            "q3": "Relationship Skills",
+            "q4": "Emotional Readiness",
+            "q5": "Relationship Skills",
+            "q6": "Expectations & Dealbreakers",
+            "q7": "Expectations & Dealbreakers",
+            "q8": "Relationship Skills",
+            "q9": "Past Relationship Patterns",
+            "q10": "Emotional Readiness",
+            // Add remaining questions here...
+        };
+
+        const maxScores = {
+            "Emotional Readiness": 6,
+            "Relationship Skills": 6,
+            "Past Relationship Patterns": 4,
+            "Expectations & Dealbreakers": 4
+        };
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
             let scores = {
                 "Emotional Readiness": 0,
                 "Relationship Skills": 0,
@@ -95,68 +116,46 @@
                 "Expectations & Dealbreakers": 0
             };
 
-            let maxScores = {
-                "Emotional Readiness": 4,
-                "Relationship Skills": 2,
-                "Past Relationship Patterns": 2,
-                "Expectations & Dealbreakers": 2
-            };
-
-            let responses = {
-                "q1": "Emotional Readiness",
-                "q2": "Emotional Readiness",
-                "q3": "Relationship Skills",
-                "q4": "Past Relationship Patterns",
-                "q5": "Expectations & Dealbreakers"
-            };
-
-            // Loop through responses and calculate scores
+            // Calculate scores
             for (let question in responses) {
-                let category = responses[question];
-                let selected = document.querySelector(`input[name="${question}"]:checked`);
-                if (selected) {
-                    scores[category] += parseInt(selected.value);
+                const value = document.querySelector(`input[name="${question}"]:checked`);
+                if (value) {
+                    scores[responses[question]] += parseInt(value.value);
                 }
             }
 
-            // Convert scores to percentages
-            let percentages = {};
-            for (let category in scores) {
-                percentages[category] = (scores[category] / maxScores[category]) * 100;
-            }
+            // Create the radar chart
+            const data = {
+                labels: ["Emotional Readiness", "Relationship Skills", "Past Relationship Patterns", "Expectations & Dealbreakers"],
+                datasets: [{
+                    label: 'Your Romantic Readiness',
+                    data: [
+                        scores["Emotional Readiness"],
+                        scores["Relationship Skills"],
+                        scores["Past Relationship Patterns"],
+                        scores["Expectations & Dealbreakers"]
+                    ],
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            };
 
-            displayChart(percentages);
-        }
-
-        function displayChart(percentages) {
-            let ctx = document.getElementById("readinessChart").getContext("2d");
-
-            // Destroy previous chart if it exists
-            if (window.myChart) {
-                window.myChart.destroy();
-            }
-
-            window.myChart = new Chart(ctx, {
-                type: "radar",
-                data: {
-                    labels: Object.keys(percentages),
-                    datasets: [{
-                        label: "Readiness Score",
-                        data: Object.values(percentages),
-                        backgroundColor: "rgba(0, 123, 255, 0.2)",
-                        borderColor: "#007BFF",
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    scale: {
-                        angleLines: { display: true },
-                        ticks: { beginAtZero: true, max: 100 }
+            const options = {
+                scale: {
+                    ticks: {
+                        beginAtZero: true,
+                        max: Math.max(...Object.values(maxScores))
                     }
                 }
-            });
-        }
-    </script>
+            };
 
+            new Chart(ctx, {
+                type: 'radar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
 </body>
 </html>
