@@ -32,9 +32,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        canvas {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -42,201 +39,36 @@
     <div class="container">
         <h1>Romantic Readiness Assessment</h1>
         <p>Answer the questions below to assess your readiness for a romantic partner.</p>
+        
+        <!-- Only one form -->
         <form id="assessmentForm">
-            <!-- Questions 1 to 100 -->
+            <h3>Part 1: Emotional Readiness</h3>
             <div class="question">
-              <form id="romantic-readiness-questionnaire">
-  <h2>Romantic Readiness Questionnaire</h2>
-
-  <p>This questionnaire is designed to help you assess how prepared you are for a romantic relationship. It covers emotional readiness, relationship skills, lifestyle alignment, and personal goals. By answering these close-ended questions, you’ll gain insight into your mindset, strengths, and areas that may need growth before entering a committed relationship.</p>
-
-  <h3>Part 1: Emotional Readiness</h3>
-  <label>1. Do I feel emotionally secure in myself?</label><br>
-  <input type="radio" name="q1" value="Yes"> Yes
-  <input type="radio" name="q1" value="No"> No
-  <input type="radio" name="q1" value="Sometimes"> Sometimes<br>
-
-  <label>2. Am I comfortable being vulnerable with someone I trust?</label><br>
-  <input type="radio" name="q2" value="Yes"> Yes
-  <input type="radio" name="q2" value="No"> No
-  <input type="radio" name="q2" value="Sometimes"> Sometimes<br>
-
-  <label>3. Do I have unresolved emotional wounds from past relationships?</label><br>
-  <input type="radio" name="q3" value="Yes"> Yes
-  <input type="radio" name="q3" value="No"> No
-  <input type="radio" name="q3" value="Not Sure"> Not Sure<br>
-
-  <label>4. Do I believe I am capable of giving and receiving love in a healthy way?</label><br>
-  <input type="radio" name="q4" value="Yes"> Yes
-  <input type="radio" name="q4" value="No"> No
-  <input type="radio" name="q4" value="Maybe"> Maybe<br>
-
-  <label>5. How well do I manage my emotions during stressful situations?</label><br>
-  <input type="radio" name="q5" value="Not well"> Not well
-  <input type="radio" name="q5" value="Somewhat well"> Somewhat well
-  <input type="radio" name="q5" value="Very well"> Very well<br>
-
-  <label>6. Do I rely on external validation to feel good about myself?</label><br>
-  <input type="radio" name="q6" value="Yes"> Yes
-  <input type="radio" name="q6" value="No"> No
-  <input type="radio" name="q6" value="Sometimes"> Sometimes<br>
-
-  <label>7. Am I comfortable spending time alone without feeling lonely?</label><br>
-  <input type="radio" name="q7" value="Yes"> Yes
-  <input type="radio" name="q7" value="No"> No
-  <input type="radio" name="q7" value="Sometimes"> Sometimes<br>
-
-  <label>8. Do I trust my own judgment in choosing a partner?</label><br>
-  <input type="radio" name="q8" value="Yes"> Yes
-  <input type="radio" name="q8" value="No"> No
-  <input type="radio" name="q8" value="Unsure"> Unsure<br>
-
-  <label>9. Do I feel like I need a relationship to feel fulfilled?</label><br>
-  <input type="radio" name="q9" value="Yes"> Yes
-  <input type="radio" name="q9" value="No"> No
-  <input type="radio" name="q9" value="Sometimes"> Sometimes<br>
-
-  <label>10. Have I taken time to reflect on what I truly want in a partner?</label><br>
-  <input type="radio" name="q10" value="Yes"> Yes
-  <input type="radio" name="q10" value="No"> No
-  <input type="radio" name="q10" value="Somewhat"> Somewhat<br>
-
-  <h3>Part 2: Relationship Skills & Compatibility</h3>
-  <label>11. How well do I communicate my feelings and needs?</label><br>
-  <input type="radio" name="q11" value="Poorly"> Poorly
-  <input type="radio" name="q11" value="Somewhat well"> Somewhat well
-  <input type="radio" name="q11" value="Very well"> Very well<br>
-
-  <label>12. Do I know how to set and maintain boundaries in relationships?</label><br>
-  <input type="radio" name="q12" value="Yes"> Yes
-  <input type="radio" name="q12" value="No"> No
-  <input type="radio" name="q12" value="Somewhat"> Somewhat<br>
-
-  <label>13. Am I willing to compromise when necessary?</label><br>
-  <input type="radio" name="q13" value="Yes"> Yes
-  <input type="radio" name="q13" value="No"> No
-  <input type="radio" name="q13" value="Depends on the situation"> Depends on the situation<br>
-
-  <label>14. How do I handle conflict in relationships?</label><br>
-  <input type="radio" name="q14" value="Avoid it"> Avoid it
-  <input type="radio" name="q14" value="Get defensive"> Get defensive
-  <input type="radio" name="q14" value="Work through it calmly"> Work through it calmly<br>
-
-  <label>15. Am I willing to support a partner through their struggles?</label><br>
-  <input type="radio" name="q15" value="Yes"> Yes
-  <input type="radio" name="q15" value="No"> No
-  <input type="radio" name="q15" value="Depends on the situation"> Depends on the situation<br>
-
-  <label>16. Do I expect a partner to “fix” my problems?</label><br>
-  <input type="radio" name="q16" value="Yes"> Yes
-  <input type="radio" name="q16" value="No"> No
-  <input type="radio" name="q16" value="Sometimes"> Sometimes<br>
-
-  <label>17. How well do I handle constructive criticism from a loved one?</label><br>
-  <input type="radio" name="q17" value="Not well"> Not well
-  <input type="radio" name="q17" value="Somewhat well"> Somewhat well
-  <input type="radio" name="q17" value="Very well"> Very well<br>
-
-  <label>18. Do I tend to lose myself in relationships?</label><br>
-  <input type="radio" name="q18" value="Yes"> Yes
-  <input type="radio" name="q18" value="No"> No
-  <input type="radio" name="q18" value="Sometimes"> Sometimes<br>
-
-  <label>19. Am I comfortable with my partner having friendships with the opposite gender?</label><br>
-  <input type="radio" name="q19" value="Yes"> Yes
-  <input type="radio" name="q19" value="No"> No
-  <input type="radio" name="q19" value="Depends on boundaries"> Depends on boundaries<br>
-
-  <label>20. Do I compare potential partners to past relationships?</label><br>
-  <input type="radio" name="q20" value="Yes"> Yes
-  <input type="radio" name="q20" value="No"> No
-  <input type="radio" name="q20" value="Sometimes"> Sometimes<br>
-
-  <!-- Continue adding sections in the same format as above for the remaining parts -->
-</form>
+                <label>1. Do I feel emotionally secure in myself?</label><br>
+                <input type="radio" name="q1" value="1"> Yes
+                <input type="radio" name="q1" value="0"> No
+                <input type="radio" name="q1" value="0.5"> Sometimes<br>
             </div>
+
+            <div class="question">
+                <label>2. Am I comfortable being vulnerable with someone I trust?</label><br>
+                <input type="radio" name="q2" value="1"> Yes
+                <input type="radio" name="q2" value="0"> No
+                <input type="radio" name="q2" value="0.5"> Sometimes<br>
+            </div>
+
+            <!-- More questions here -->
 
             <button type="submit" class="submit-btn">Submit</button>
         </form>
-        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const form = document.getElementById('assessmentForm');
-        const canvas = document.getElementById('myChart');
-        const ctx = canvas.getContext('2d');
-
-        const responses = {
-            "q1": "Emotional Readiness",
-            "q2": "Emotional Readiness",
-            "q3": "Relationship Skills",
-            "q4": "Emotional Readiness",
-            "q5": "Relationship Skills",
-            "q6": "Expectations & Dealbreakers",
-            "q7": "Expectations & Dealbreakers",
-            "q8": "Relationship Skills",
-            "q9": "Past Relationship Patterns",
-            "q10": "Emotional Readiness",
-            // Continue mapping all questions...
-        };
-
-        const maxScores = {
-            "Emotional Readiness": 6,
-            "Relationship Skills": 6,
-            "Past Relationship Patterns": 4,
-            "Expectations & Dealbreakers": 4
-        };
-
-        form.addEventListener('submit', function(event) {
+        document.getElementById('assessmentForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            let scores = {
-                "Emotional Readiness": 0,
-                "Relationship Skills": 0,
-                "Past Relationship Patterns": 0,
-                "Expectations & Dealbreakers": 0
-            };
-
-            // Calculate scores
-            for (let question in responses) {
-                const value = document.querySelector(`input[name="${question}"]:checked`);
-                if (value) {
-                    scores[responses[question]] += parseInt(value.value);
-                }
-            }
-
-            // Create the radar chart
-            const data = {
-                labels: ["Emotional Readiness", "Relationship Skills", "Past Relationship Patterns", "Expectations & Dealbreakers"],
-                datasets: [{
-                    label: 'Your Romantic Readiness',
-                    data: [
-                        scores["Emotional Readiness"],
-                        scores["Relationship Skills"],
-                        scores["Past Relationship Patterns"],
-                        scores["Expectations & Dealbreakers"]
-                    ],
-                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                    borderColor: 'rgba(0, 123, 255, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            const options = {
-                scale: {
-                    ticks: {
-                        beginAtZero: true,
-                        max: Math.max(...Object.values(maxScores))
-                    }
-                }
-            };
-
-            new Chart(ctx, {
-                type: 'radar',
-                data: data,
-                options: options
-            });
+            alert("Form submitted successfully!");
         });
     </script>
+
 </body>
 </html>
