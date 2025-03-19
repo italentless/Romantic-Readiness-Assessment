@@ -1,0 +1,169 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww28600\viewh14440\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Romantic Readiness Assessment</title>\
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\
+    <style>\
+        body \{\
+            font-family: Arial, sans-serif;\
+            text-align: center;\
+            margin: 20px;\
+            background-color: #f5f5f5;\
+        \}\
+        .container \{\
+            max-width: 600px;\
+            margin: auto;\
+            background: white;\
+            padding: 20px;\
+            border-radius: 10px;\
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);\
+        \}\
+        .question \{\
+            text-align: left;\
+            margin: 15px 0;\
+        \}\
+        .submit-btn \{\
+            margin-top: 20px;\
+            padding: 10px 15px;\
+            background-color: #007BFF;\
+            color: white;\
+            border: none;\
+            border-radius: 5px;\
+            cursor: pointer;\
+        \}\
+        canvas \{\
+            margin-top: 20px;\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+    <div class="container">\
+        <h2>Romantic Readiness Assessment</h2>\
+        <p>Answer the questions below to see how ready you are for a romantic relationship.</p>\
+\
+        <form id="quizForm">\
+            <div class="question">\
+                <p>1. Do I feel emotionally secure in myself?</p>\
+                <input type="radio" name="q1" value="2"> Yes\
+                <input type="radio" name="q1" value="1"> Sometimes\
+                <input type="radio" name="q1" value="0"> No\
+            </div>\
+            \
+            <div class="question">\
+                <p>2. Am I comfortable being vulnerable with someone I trust?</p>\
+                <input type="radio" name="q2" value="2"> Yes\
+                <input type="radio" name="q2" value="1"> Sometimes\
+                <input type="radio" name="q2" value="0"> No\
+            </div>\
+            \
+            <div class="question">\
+                <p>3. Do I know how to set and maintain boundaries in relationships?</p>\
+                <input type="radio" name="q3" value="2"> Yes\
+                <input type="radio" name="q3" value="1"> Somewhat\
+                <input type="radio" name="q3" value="0"> No\
+            </div>\
+            \
+            <div class="question">\
+                <p>4. Do I tend to repeat the same mistakes in relationships?</p>\
+                <input type="radio" name="q4" value="0"> Yes\
+                <input type="radio" name="q4" value="1"> Sometimes\
+                <input type="radio" name="q4" value="2"> No\
+            </div>\
+\
+            <div class="question">\
+                <p>5. Do I have a clear idea of my non-negotiables in a relationship?</p>\
+                <input type="radio" name="q5" value="2"> Yes\
+                <input type="radio" name="q5" value="1"> Somewhat\
+                <input type="radio" name="q5" value="0"> No\
+            </div>\
+\
+            <button type="button" class="submit-btn" onclick="calculateScore()">Submit</button>\
+        </form>\
+\
+        <canvas id="readinessChart"></canvas>\
+    </div>\
+\
+    <script>\
+        function calculateScore() \{\
+            let scores = \{\
+                "Emotional Readiness": 0,\
+                "Relationship Skills": 0,\
+                "Past Relationship Patterns": 0,\
+                "Expectations & Dealbreakers": 0\
+            \};\
+\
+            let maxScores = \{\
+                "Emotional Readiness": 4,\
+                "Relationship Skills": 2,\
+                "Past Relationship Patterns": 2,\
+                "Expectations & Dealbreakers": 2\
+            \};\
+\
+            let responses = \{\
+                "q1": "Emotional Readiness",\
+                "q2": "Emotional Readiness",\
+                "q3": "Relationship Skills",\
+                "q4": "Past Relationship Patterns",\
+                "q5": "Expectations & Dealbreakers"\
+            \};\
+\
+            // Loop through responses and calculate scores\
+            for (let question in responses) \{\
+                let category = responses[question];\
+                let selected = document.querySelector(`input[name="$\{question\}"]:checked`);\
+                if (selected) \{\
+                    scores[category] += parseInt(selected.value);\
+                \}\
+            \}\
+\
+            // Convert scores to percentages\
+            let percentages = \{\};\
+            for (let category in scores) \{\
+                percentages[category] = (scores[category] / maxScores[category]) * 100;\
+            \}\
+\
+            displayChart(percentages);\
+        \}\
+\
+        function displayChart(percentages) \{\
+            let ctx = document.getElementById("readinessChart").getContext("2d");\
+\
+            // Destroy previous chart if it exists\
+            if (window.myChart) \{\
+                window.myChart.destroy();\
+            \}\
+\
+            window.myChart = new Chart(ctx, \{\
+                type: "radar",\
+                data: \{\
+                    labels: Object.keys(percentages),\
+                    datasets: [\{\
+                        label: "Readiness Score",\
+                        data: Object.values(percentages),\
+                        backgroundColor: "rgba(0, 123, 255, 0.2)",\
+                        borderColor: "#007BFF",\
+                        borderWidth: 2\
+                    \}]\
+                \},\
+                options: \{\
+                    scale: \{\
+                        angleLines: \{ display: true \},\
+                        ticks: \{ beginAtZero: true, max: 100 \}\
+                    \}\
+                \}\
+            \});\
+        \}\
+    </script>\
+\
+</body>\
+</html>}
